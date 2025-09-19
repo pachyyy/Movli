@@ -1,2 +1,2 @@
-# AI-web-generator
-A website landing page generator with IBM Granite API for IBM Skillsbuild Capstone Project
+# Movli
+Website for finding and saving movie with an ability to find movie based on AI generated feature
