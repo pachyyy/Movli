@@ -4,7 +4,7 @@ import { PiNotePencilBold } from "react-icons/pi";
 import { FaGear, FaMagnifyingGlass } from "react-icons/fa6";
 import { LuLogOut } from "react-icons/lu";
 import SidebarButton from "../components/SidebarButton";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import app from "../../firebaseConfig";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";

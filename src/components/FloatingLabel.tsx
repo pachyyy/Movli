@@ -1,4 +1,20 @@
-const FloatingLabelInput = ({ id, label, type = "text", ...props }) => {
+import React from "react";
+import type { InputHTMLAttributes } from "react";
+
+// Define an interface for the component's props.
+// This extends the standard HTML input attributes to accept props like `value`, `onChange`, etc.
+interface FloatingLabelInputProps
+    extends InputHTMLAttributes<HTMLInputElement> {
+    id: string;
+    label: string;
+}
+
+const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
+    id,
+    label,
+    type = "text",
+    ...props
+}) => {
     return (
         <div className="relative">
             <input

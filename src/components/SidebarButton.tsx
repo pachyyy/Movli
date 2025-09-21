@@ -1,4 +1,13 @@
-const SidebarButton = ({ icon, text, href }) => {
+import React from "react";
+
+// Define an interface for the component's props.
+interface SidebarButtonProps {
+    icon: React.ReactNode; // Use React.ReactNode to allow JSX elements like icons.
+    text: string;
+    href: string;
+}
+
+const SidebarButton: React.FC<SidebarButtonProps> = ({ icon, text, href }) => {
     return (
         <a
             href={href}

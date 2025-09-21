@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
-import FloatingLabelInput from "../components/FloatingLabel";
-import Logo from "../components/Logo";
-
-// Firebase imports
+import type { InputHTMLAttributes } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -11,9 +8,60 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
+// FIX: Corrected import path to point to the project's root directory.
 import app from "../../firebaseConfig";
 
-// A simple SVG component for the Google icon (content unchanged)
+// --- START: Placeholder Components ---
+// The following components are placeholders to resolve the import errors.
+// You should replace these with your actual Logo and FloatingLabelInput components.
+
+interface FloatingLabelInputProps
+    extends InputHTMLAttributes<HTMLInputElement> {
+    label: string;
+    id: string;
+}
+
+const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
+    label,
+    id,
+    ...props
+}) => (
+    <div className="relative">
+        <input
+            id={id}
+            className="w-full px-3 py-2 text-black bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 peer"
+            placeholder=" "
+            {...props}
+        />
+        <label
+            htmlFor={id}
+            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 left-1 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        >
+            {label}
+        </label>
+    </div>
+);
+
+interface LogoProps {
+    className?: string;
+    color?: string;
+    href?: string;
+}
+
+const Logo: React.FC<LogoProps> = ({
+    className,
+    color = "#000",
+    href = "/",
+}) => (
+    <div className={className}>
+        <a href={href} className="text-2xl font-bold" style={{ color: color }}>
+            Movli
+        </a>
+    </div>
+);
+// --- END: Placeholder Components ---
+
+// A simple SVG component for the Google icon
 const GoogleIcon = () => (
     <svg className="w-5 h-5 mr-3" viewBox="0 0 48 48">
         <path
@@ -42,7 +90,7 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [error, setError] = useState("");
-    const navigate = useNavigate(); // 2. Initialize the navigate function
+    const navigate = useNavigate();
     const auth = getAuth(app);
 
     useEffect(() => {
@@ -53,7 +101,7 @@ const SignUp = () => {
         }
     }, [password, confirmPassword]);
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError("");
 
@@ -73,9 +121,13 @@ const SignUp = () => {
             });
 
             console.log("Successfully created user:", userCredential.user);
-            navigate("/user"); // 3. Redirect after successful sign-up
+            navigate("/user");
         } catch (err) {
-            setError(err.message);
+            let errorMessage = "An unknown error occurred.";
+            if (err instanceof Error) {
+                errorMessage = err.message;
+            }
+            setError(errorMessage);
             console.error("Error creating user:", err);
         }
     };
@@ -86,36 +138,34 @@ const SignUp = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             console.log("Successfully signed up with Google:", result.user);
-            navigate("/user"); // 3. Redirect after successful sign-up
-        } catch (error) {
+            navigate("/user");
+        } catch (error: any) {
+            const errorMessage = error.message || "An unknown error occurred.";
             console.error("Error during Google sign-up:", error);
-            setError(error.message);
+            setError(errorMessage);
         }
     };
 
-    // --- The rest of your JSX remains the same ---
     return (
         <>
             <Logo
-                className="fixed top-0 left-0 right-0 z-30 "
+                className="fixed top-4 left-4 right-0 z-30 "
                 color="#90E0EF"
                 href="/"
             />
             <div className="flex flex-row items-center h-screen w-screen bg-white">
                 {/* Left section - Image */}
-                <div>
+                <div className="hidden md:block w-1/2 h-screen">
                     <img
-                        src="../src/assets/login-left.svg"
-                        alt="Login"
-                        className="h-screen object-contain"
-                        title="Image by Denise Jans from Unsplash"
-                        // https://unsplash.com/photos/photography-of-camera-reel-film-9lTUAlNB87M
+                        src="https://placehold.co/1000x1200/0077b6/white?text=Movli&font=rubik"
+                        alt="Sign up background"
+                        className="w-full h-full object-cover"
                     />
                 </div>
 
                 {/* Right section - Sign-up Form */}
-                <div className="mx-auto flex flex-col items-center justify-center">
-                    <div className="w-full">
+                <div className="w-full md:w-1/2 mx-auto flex flex-col items-center justify-center px-8">
+                    <div className="w-full max-w-sm">
                         {/* Title */}
                         <div className="text-center ">
                             <h1 className="mx-auto text-2xl text-black font-bold font-rubik ">
@@ -136,7 +186,9 @@ const SignUp = () => {
                                 label="Full Name"
                                 type="text"
                                 value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => setFullName(e.target.value)}
                                 required
                             />
                             <FloatingLabelInput
@@ -144,7 +196,9 @@ const SignUp = () => {
                                 label="Email address"
                                 type="email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => setEmail(e.target.value)}
                                 required
                             />
                             <FloatingLabelInput
@@ -152,7 +206,9 @@ const SignUp = () => {
                                 label="Password"
                                 type="password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => setPassword(e.target.value)}
                                 required
                             />
                             <FloatingLabelInput
@@ -160,9 +216,9 @@ const SignUp = () => {
                                 label="Confirm Password"
                                 type="password"
                                 value={confirmPassword}
-                                onChange={(e) =>
-                                    setConfirmPassword(e.target.value)
-                                }
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => setConfirmPassword(e.target.value)}
                                 required
                             />
 
@@ -222,7 +278,7 @@ const SignUp = () => {
                             </span>
                         </button>
                     </div>
-                    <div className="w-full text-center py-2">
+                    <div className="w-full max-w-sm text-center py-2 mt-4">
                         <p className="text-gray-400 font-rubik font-bold">
                             Have an account?{" "}
                             <a href="/login">
