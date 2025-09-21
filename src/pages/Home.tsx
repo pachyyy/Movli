@@ -1,5 +1,4 @@
 import NavBar from "../components/NavBar";
-import example from "../public/assets/code.svg";
 
 const Home = () => {
     return (
@@ -26,7 +25,7 @@ const Home = () => {
                 {/* Right Section */}
                 <div>
                     <img
-                        src={example}
+                        src="../src/assets/code.svg"
                         alt="Movie Night"
                         className="w-[45rem] object-contain"
                     />
