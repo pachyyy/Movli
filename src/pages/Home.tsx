@@ -1,5 +1,5 @@
 import NavBar from "../components/NavBar";
-import example from "../src/assets/code.svg";
+import example from "../public/assets/code.svg";
 
 const Home = () => {
     return (
