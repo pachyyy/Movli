@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import AppRoutes from "./routes"; // 👈 Import your new routes component
 import "./App.css";
 
