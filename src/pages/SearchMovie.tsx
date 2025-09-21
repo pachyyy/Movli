@@ -96,7 +96,7 @@ const SearchMovie: React.FC = () => {
     }, [auth]);
 
     // IMPORTANT: Replace this with your actual TMDB API key
-    const TMDB_API_KEY = import.meta.env.TMDB_API_KEY;
+    const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();

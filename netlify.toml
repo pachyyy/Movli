@@ -1,0 +1,18 @@
+# This file tells Netlify how to build and deploy your frontend React app.
+# Place this file in the ROOT of your project.
+
+[build]
+  # The command to build your React (Vite) application.
+  command = "npm install && npm run build"
+  
+  # The directory where your built frontend assets are located.
+  publish = "dist"
+
+# Rule for handling Single Page Application (SPA) routing.
+# This ensures that refreshing on pages like /login or /user works correctly
+# by always serving the index.html file for any path that isn't a file.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

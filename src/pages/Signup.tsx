@@ -155,11 +155,13 @@ const SignUp = () => {
             />
             <div className="flex flex-row items-center h-screen w-screen bg-white">
                 {/* Left section - Image */}
-                <div className="hidden md:block w-1/2 h-screen">
+                <div>
                     <img
-                        src="https://placehold.co/1000x1200/0077b6/white?text=Movli&font=rubik"
-                        alt="Sign up background"
-                        className="w-full h-full object-cover"
+                        src="../src/assets/login-left.svg"
+                        alt="A person sitting on a couch watching a movie"
+                        className="h-screen object-contain"
+                        title="Image by Denise Jans from Unsplash"
+                        // https://unsplash.com/photos/photography-of-camera-reel-film-9lTUAlNB87M
                     />
                 </div>
 

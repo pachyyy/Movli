@@ -61,7 +61,7 @@ export const saveMovie = async (movie: Movie) => {
             watched: false // New movies are always unwatched by default
         };
 
-        const response = await authedAxios.post('/movies', movieToSave);
+        const response = await authedAxios.post('/api/movies', movieToSave);
         return response.data;
     } catch (error) {
         console.error('Error in saveMovie:', error);
@@ -76,7 +76,7 @@ export const saveMovie = async (movie: Movie) => {
  */
 export const getSavedMovies = async (): Promise<SavedMovie[]> => {
     try {
-        const response = await authedAxios.get('/movies');
+        const response = await authedAxios.get('/api/movies');
         return response.data;
     } catch (error) {
         console.error('Error fetching saved movies:', error);
@@ -90,7 +90,7 @@ export const getSavedMovies = async (): Promise<SavedMovie[]> => {
  */
 export const deleteMovie = async (movieId: string): Promise<void> => {
     try {
-        await authedAxios.delete(`/movies/${movieId}`);
+        await authedAxios.delete(`/api/movies/${movieId}`);
     } catch (error) {
         console.error(`Error deleting movie with ID ${movieId}:`, error);
         throw error;
@@ -104,7 +104,7 @@ export const deleteMovie = async (movieId: string): Promise<void> => {
  */
 export const updateMovie = async (movieId: string, updates: Partial<SavedMovie>): Promise<void> => {
     try {
-        await authedAxios.put(`/movies/${movieId}`, updates);
+        await authedAxios.put(`/api/movies/${movieId}`, updates);
     } catch (error) {
         console.error(`Error updating movie with ID ${movieId}:`, error);
         throw error;
