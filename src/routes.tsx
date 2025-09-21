@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Test from "./pages/test";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -13,7 +12,6 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/test" element={<Test />} />
             <Route path="/nav" element={<NavBar />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

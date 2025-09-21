@@ -87,6 +87,8 @@ const Login = () => {
                         src="../src/assets/login-left.svg"
                         alt="A person sitting on a couch watching a movie"
                         className="h-screen object-contain"
+                        title="Image by Denise Jans from Unsplash"
+                        // https://unsplash.com/photos/photography-of-camera-reel-film-9lTUAlNB87M
                     />
                 </div>
                 {/* right section - login */}
