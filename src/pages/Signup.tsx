@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { InputHTMLAttributes } from "react";
+import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
 import {
     getAuth,
@@ -10,6 +11,7 @@ import {
 } from "firebase/auth";
 // FIX: Corrected import path to point to the project's root directory.
 import app from "../../firebaseConfig";
+import leftImage from "../assets/login-left.svg";
 
 // --- START: Placeholder Components ---
 // The following components are placeholders to resolve the import errors.
@@ -42,23 +44,6 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
     </div>
 );
 
-interface LogoProps {
-    className?: string;
-    color?: string;
-    href?: string;
-}
-
-const Logo: React.FC<LogoProps> = ({
-    className,
-    color = "#000",
-    href = "/",
-}) => (
-    <div className={className}>
-        <a href={href} className="text-2xl font-bold" style={{ color: color }}>
-            Movli
-        </a>
-    </div>
-);
 // --- END: Placeholder Components ---
 
 // A simple SVG component for the Google icon
@@ -149,7 +134,7 @@ const SignUp = () => {
     return (
         <>
             <Logo
-                className="fixed top-4 left-4 right-0 z-30 "
+                className="fixed top-0 left-0 right-0 z-30 "
                 color="#90E0EF"
                 href="/"
             />
@@ -157,7 +142,7 @@ const SignUp = () => {
                 {/* Left section - Image */}
                 <div>
                     <img
-                        src="../src/assets/login-left.svg"
+                        src={leftImage}
                         alt="A person sitting on a couch watching a movie"
                         className="h-screen object-contain"
                         title="Image by Denise Jans from Unsplash"

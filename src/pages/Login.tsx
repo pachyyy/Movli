@@ -9,6 +9,7 @@ import {
 import app from "../../firebaseConfig"; // Make sure this path points to your Firebase initialization
 import FloatingLabelInput from "../components/FloatingLabel"; // Adjusted path for clarity
 import Logo from "../components/Logo";
+import leftImage from "../assets/login-left.svg";
 
 // A simple SVG component for the Google icon
 const GoogleIcon = () => (
@@ -84,7 +85,7 @@ const Login = () => {
                 {/* left section */}
                 <div>
                     <img
-                        src="../src/assets/login-left.svg"
+                        src={leftImage}
                         alt="A person sitting on a couch watching a movie"
                         className="h-screen object-contain"
                         title="Image by Denise Jans from Unsplash"
